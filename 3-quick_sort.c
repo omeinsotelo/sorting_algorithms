@@ -6,7 +6,10 @@
  */
 void quick_sort(int *array, size_t size)
 {
-	unsigned int i, j, temp, pivot, low, high, swap;
+	unsigned int i, j, pivot, low, high, swap;
+
+	if (size <= 1)
+		return;
 
 	pivot = high = size - 1;
 	i = j = low = 0;
@@ -20,9 +23,7 @@ void quick_sort(int *array, size_t size)
 				j++;
 			else
 			{
-				temp = array[j];
-				array[j] = array[i];
-				array[i] = temp;
+				swapAr(&array[i], &array[j]);
 				j++;
 				i++;
 				if (array[j] != array[i])
@@ -34,9 +35,7 @@ void quick_sort(int *array, size_t size)
 		}
 		if (array[i] > array[pivot])
 		{
-			temp = array[j];
-			array[j] = array[i];
-			array[i] = temp;
+			swapAr(&array[i], &array[j]);
 			swap = 1;
 			print_array(array, size);
 		}
@@ -45,4 +44,19 @@ void quick_sort(int *array, size_t size)
 		if (swap == 1)
 			low++;
 	} while (low < high);
+}
+
+/**
+ * swapAr - sorts an array using the Quick sort
+ * @i: int
+ * @j: int
+ */
+
+void swapAr(int *i, int *j)
+{
+	int temp;
+
+	temp = *j;
+	*j = *i;
+	*i = temp;
 }

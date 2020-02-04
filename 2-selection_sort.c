@@ -9,6 +9,9 @@ void selection_sort(int *array, size_t size)
 	unsigned int i, temp, j;
 	int state;
 
+	if (array == NULL || size <= 1)
+		return;
+
 	i = 0;
 	state = 1;
 	while (state == 1)

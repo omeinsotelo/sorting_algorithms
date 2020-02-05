@@ -6,31 +6,22 @@
  */
 void selection_sort(int *array, size_t size)
 {
-	size_t i, j;
-	int temp, min, small;
+	size_t ext, inte, i, temp;
 
-	if (size <= 1)
+	if (size <= 1 || array == NULL)
 		return;
-
-	i = 0;
-	do {
-		min = i;
-		small = i;
-		for (j = i; j <= size - 1; j++)
+	for (ext = 0; ext < size; ext++)
+	{
+		i = ext;
+		for (inte = ext + 1; inte < size; inte++)
 		{
-			if (array[min] > array[j])
-			{
-				small = j;
-				min = j;
-			}
+			if (array[i] > array[inte])
+				i = inte;
 		}
-		if (array[i] > array[small])
-		{
-			temp = array[i];
-			array[i] = array[small];
-			array[small] = temp;
+		temp = array[ext];
+		array[ext] = array[i];
+		array[i] = temp;
+		if (ext != i)
 			print_array(array, size);
-		}
-		i++;
-		} while (i < size);
+	}
 }

@@ -6,6 +6,9 @@
  */
 void quick_sort(int *array, size_t size)
 {
+	if (array == NULL || size <= 1)
+		return;
+
 	quick_sort_recurcion(array, size, 0, size - 1);
 }
 /**
